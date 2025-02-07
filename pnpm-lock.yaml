@@ -18,8 +18,8 @@ importers:
         specifier: ^1.4.0
         version: 1.4.0
       billd-deploy:
-        specifier: ^1.1.0
-        version: 1.1.0(@types/node@20.4.1)(esbuild@0.15.18)(sass@1.63.6)(terser@5.27.0)
+        specifier: ^1.2.0
+        version: 1.2.0(@types/node@20.4.1)(esbuild@0.15.18)(sass@1.63.6)(terser@5.27.0)
       billd-html-webpack-plugin:
         specifier: ^1.2.0
         version: 1.2.0(@types/node@20.4.1)(esbuild@0.15.18)(sass@1.63.6)(terser@5.27.0)
@@ -2368,8 +2368,8 @@ packages:
   before@0.0.1:
     resolution: {integrity: sha512-1J5SWbkoVJH9DTALN8igB4p+nPKZzPrJ/HomqBDLpfUvDXCdjdBmBUcH5McZfur0lftVssVU6BZug5NYh87zTw==}
 
-  billd-deploy@1.1.0:
-    resolution: {integrity: sha512-7wi42bJR4Hgg66vZ3nNw5E4jkTDozatiTEqogXSUU9Qc+DpDiwoaQV8woHrMYRrTdr7PNTLB53H8cYnsdCRtJw==}
+  billd-deploy@1.2.0:
+    resolution: {integrity: sha512-23gMc+EM/GP9UljnF3fkz6M4OXQqAGBIE7NYu1N6NobufkHmslEzj2316ywKXwwnsXmicXuJHyGOVviM0GTWIQ==}
 
   billd-html-webpack-plugin@1.2.0:
     resolution: {integrity: sha512-tm7StNOw2t1BcdnZW+eFhaj4Nb8JYMz9/XkW9qe0nBzzpYfBdzScmbMnxGV81/1l1/W0DUerxrH/Znr1pS+HOw==}
@@ -9302,7 +9302,7 @@ snapshots:
 
   before@0.0.1: {}
 
-  billd-deploy@1.1.0(@types/node@20.4.1)(esbuild@0.15.18)(sass@1.63.6)(terser@5.27.0):
+  billd-deploy@1.2.0(@types/node@20.4.1)(esbuild@0.15.18)(sass@1.63.6)(terser@5.27.0):
     dependencies:
       ali-oss: 6.22.0
       billd-html-webpack-plugin: 1.2.0(@types/node@20.4.1)(esbuild@0.15.18)(sass@1.63.6)(terser@5.27.0)

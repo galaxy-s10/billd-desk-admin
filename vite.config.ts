@@ -18,7 +18,7 @@ export default defineConfig(({ mode }) => {
 
   const outputStaticUrl = () => {
     if (isProduction) {
-      return 'https://resource.hsslive.cn/billd-desk/admin/dist/';
+      return 'https://tencentcos-res.hsslive.cn/billd-desk-admin/client/dist/';
     } else {
       return './';
     }
