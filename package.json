@@ -33,7 +33,7 @@
     "lint:fix": "eslint . --config ./eslint.config.js --cache --fix",
     "preview": "vite preview",
     "release": "standard-version",
-    "sync-repo": "ts-node ./deploy/handleSyncPublic.mjs"
+    "sync-public": "ts-node ./deploy/handleSyncPublic.mjs"
   },
   "config": {},
   "dependencies": {},
