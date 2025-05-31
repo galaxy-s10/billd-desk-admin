@@ -1,14 +1,9 @@
 import {
-  BagHandleOutline,
-  BulbOutline,
   ChatbubblesOutline,
   FootstepsOutline,
-  HomeOutline,
   LockClosedOutline,
-  PaperPlaneOutline,
   PersonOutline,
   ShieldOutline,
-  WalletOutline,
 } from '@vicons/ionicons5';
 import { RouteRecordRaw } from 'vue-router';
 
@@ -20,116 +15,6 @@ import { renderIcon } from './utils';
 
 // 默认路由
 export const asyncRoutes: RouteRecordRaw[] = [
-  {
-    path: '/liveManage',
-    component: Layout,
-    meta: {
-      title: 'router.liveManage',
-      icon: renderIcon(BulbOutline),
-      sort: ROUTE_SORT.live,
-      roles: [
-        DEFAULT_ROLE_INFO.SUPER_ADMIN.role_value,
-        DEFAULT_ROLE_INFO.LIVE_ADMIN.role_value,
-      ],
-    },
-    children: [
-      {
-        name: 'liveOnline',
-        path: '/liveManage/liveOnline',
-        component: () => import('@/views/live/liveOnline/list/index.vue'),
-        meta: {
-          title: 'router.liveOnline',
-        },
-      },
-      {
-        name: 'liveUser',
-        path: '/liveManage/liveUser',
-        component: () => import('@/views/live/liveUser/list/index.vue'),
-        meta: {
-          title: '在线用户',
-        },
-      },
-      {
-        name: 'liveRecord',
-        path: '/liveManage/record',
-        component: () => import('@/views/live/record/list/index.vue'),
-        meta: {
-          title: 'router.liveRecord',
-        },
-      },
-      {
-        name: 'liveForwardList',
-        path: '/liveManage/forwardList',
-        component: () => import('@/views/live/forwardList/index.vue'),
-        meta: {
-          title: 'router.liveForwardList',
-          roles: [DEFAULT_ROLE_INFO.SUPER_ADMIN.role_value],
-        },
-      },
-    ],
-  },
-  {
-    path: '/liveRoomManage',
-    component: Layout,
-    meta: {
-      title: 'router.liveRoomManage',
-      icon: renderIcon(HomeOutline),
-      sort: ROUTE_SORT.live,
-      roles: [
-        DEFAULT_ROLE_INFO.SUPER_ADMIN.role_value,
-        DEFAULT_ROLE_INFO.LIVE_ADMIN.role_value,
-      ],
-    },
-    children: [
-      {
-        name: 'liveRoomList',
-        path: '/liveRoomManage/liveRoomList',
-        component: () => import('@/views/liveRoom/list/index.vue'),
-        meta: {
-          title: 'router.liveRoomList',
-        },
-      },
-      {
-        name: 'liveRoomUpdate',
-        path: '/liveRoomManage/liveRoomUpdate',
-        component: () => import('@/views/liveRoom/update/index.vue'),
-        meta: {
-          title: 'router.liveRoomUpdate',
-        },
-      },
-    ],
-  },
-  {
-    path: '/wsMessageManage',
-    component: Layout,
-    meta: {
-      title: 'router.wsMessageManage',
-      icon: renderIcon(PaperPlaneOutline),
-      sort: ROUTE_SORT.live,
-      roles: [
-        DEFAULT_ROLE_INFO.SUPER_ADMIN.role_value,
-        DEFAULT_ROLE_INFO.LIVE_ADMIN.role_value,
-      ],
-    },
-    children: [
-      {
-        name: 'wsMessageList',
-        path: '/wsMessageManage/wsMessageList',
-        component: () => import('@/views/wsMessage/list/index.vue'),
-        meta: {
-          title: 'router.wsMessageList',
-        },
-      },
-      {
-        name: 'wsMessageUpdate',
-        path: '/wsMessageManage/wsMessageUpdate',
-        component: () => import('@/views/wsMessage/update/index.vue'),
-        meta: {
-          title: 'router.wsMessageUpdate',
-        },
-      },
-    ],
-  },
   {
     name: 'user',
     path: '/user',
@@ -234,65 +119,6 @@ export const asyncRoutes: RouteRecordRaw[] = [
     ],
   },
   {
-    name: 'order',
-    path: '/order',
-    component: Layout,
-    meta: {
-      icon: renderIcon(WalletOutline),
-      title: 'router.order',
-      sort: ROUTE_SORT.order,
-      roles: [DEFAULT_ROLE_INFO.SUPER_ADMIN.role_value],
-    },
-    children: [
-      {
-        name: 'orderList',
-        path: '/order/list',
-        component: () => import('@/views/order/list/index.vue'),
-        meta: {
-          title: 'router.orderList',
-        },
-      },
-    ],
-  },
-  {
-    name: 'goods',
-    path: '/goods',
-    component: Layout,
-    meta: {
-      icon: renderIcon(BagHandleOutline),
-      title: 'router.goods',
-      sort: ROUTE_SORT.goods,
-      roles: [DEFAULT_ROLE_INFO.SUPER_ADMIN.role_value, 'qyp'],
-    },
-    children: [
-      {
-        name: 'goodsList',
-        path: '/goods/list',
-        component: () => import('@/views/goods/list/index.vue'),
-        meta: {
-          title: 'router.goodsList',
-        },
-      },
-      {
-        name: 'goodsCreate',
-        path: '/goods/create',
-        component: () => import('@/views/goods/create/index.vue'),
-        meta: {
-          title: 'router.goodsCreate',
-        },
-      },
-      {
-        name: 'goodsUpdate',
-        path: '/goods/update',
-        component: () => import('@/views/goods/update/index.vue'),
-        meta: {
-          title: 'router.goodsUpdate',
-          hidden: true,
-        },
-      },
-    ],
-  },
-  {
     name: 'loginRecord',
     path: '/loginRecord',
     component: Layout,
@@ -346,6 +172,7 @@ export const asyncRoutes: RouteRecordRaw[] = [
         component: () => import('@/views/globalMsg/update/index.vue'),
         meta: {
           title: 'router.globalMsgUpdate',
+          hidden: true,
         },
       },
     ],

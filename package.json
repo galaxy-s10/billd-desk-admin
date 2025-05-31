@@ -1,7 +1,7 @@
 {
   "name": "billd-desk-admin",
-  "version": "0.1.0",
-  "description": "基于Vue3 + Vite6 + NaiveUI搭建的直播间后台",
+  "version": "0.1.1",
+  "description": "基于Vue3 + Vite6 + NaiveUI搭建的远程桌面后台",
   "keywords": [
     "billd",
     "bilibili",
@@ -10,7 +10,7 @@
     "flv",
     "hls"
   ],
-  "homepage": "https://live-admin.hsslive.cn",
+  "homepage": "https://desk-admin.hsslive.cn",
   "bugs": {
     "url": "https://github.com/galaxy-s10/billd-desk-admin/issues"
   },
@@ -22,6 +22,7 @@
   "author": "shuisheng <2274751790@qq.com>",
   "type": "module",
   "scripts": {
+    "build": "vite build",
     "build:beta": "vite build",
     "build:prod": "vite build",
     "cz": "cz",
@@ -32,9 +33,11 @@
     "lint:fix": "eslint . --config ./eslint.config.js --cache --fix",
     "preview": "vite preview",
     "release": "standard-version",
+    "release-major": "standard-version --release-as major",
+    "release-minor": "standard-version --release-as minor",
+    "release-patch": "standard-version --release-as patch",
     "sync-codeup": "ts-node ./deploy/handleSyncCodeup.mjs",
-    "sync-gitee": "ts-node ./deploy/handleSyncGitee.mjs",
-    "sync-public": "ts-node ./deploy/handleSyncPublic.mjs"
+    "sync-github": "ts-node ./deploy/handleSyncGithub.mjs"
   },
   "config": {},
   "dependencies": {},

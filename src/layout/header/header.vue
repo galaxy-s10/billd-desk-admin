@@ -41,7 +41,7 @@ import { useI18n } from 'vue-i18n';
 import { useRouter } from 'vue-router';
 
 import BreadcrumbCpt from '@/components/Breadcrumb/index.vue';
-import { LIVE_CLIENT_URL } from '@/constant';
+import { COMMON_URL } from '@/spec-config';
 import { useAppStore } from '@/store/app';
 import { useUserStore } from '@/store/user';
 
@@ -52,7 +52,7 @@ const { locale } = useI18n();
 
 const options = ref([
   {
-    label: '直播前台',
+    label: '在线远程',
     key: '1',
   },
   {
@@ -87,7 +87,7 @@ function handleSelectLang(key) {
 
 const handleSelect = (v) => {
   if (v === '1') {
-    window.open(LIVE_CLIENT_URL);
+    window.open(COMMON_URL.deskWebUrl);
   } else if (v === '2') {
     router.push('/setting/account').then(
       () => {},

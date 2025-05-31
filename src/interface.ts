@@ -1,17 +1,11 @@
-// ↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓ 直播间类型 ↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓
+import { TableColumn } from 'naive-ui/es/data-table/src/interface';
 
-/** 是否使用cdn */
-export enum LiveRoomUseCDNEnum {
-  /** 使用cdn */
-  yes,
-  /** 不使用cdn */
-  no,
-}
+// ↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓ 直播间类型 ↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓
 
 /** 直播间类型 */
 export enum LiveRoomTypeEnum {
   /** 系统推流 */
-  system,
+  system = 1,
   /** 主播使用srs推流 */
   srs,
   /** 主播使用obs/ffmpeg推流 */
@@ -27,23 +21,23 @@ export enum LiveRoomTypeEnum {
   /** 主播打pk */
   pk,
   /** 主播使用腾讯云css推流 */
-  tencent_css,
+  tencentcloud_css,
   /** 主播使用腾讯云css推流打pk */
-  tencent_css_pk,
+  tencentcloud_css_pk,
   /** 转推b站 */
   forward_bilibili,
-  /** 转推斗鱼 */
+  /** 转推虎牙 */
   forward_huya,
+  /** 转推斗鱼 */
+  forward_douyu,
+  /** 转推抖音 */
+  forward_douyin,
+  /** 转推抖音 */
+  forward_kuaishou,
+  /** 转推小红书 */
+  forward_xiaohongshu,
   /** 转推所有 */
   forward_all,
-}
-
-/** 拉流是否需要鉴权 */
-export enum LiveRoomPullIsShouldAuthEnum {
-  /** 需要鉴权 */
-  yes,
-  /** 不需要鉴权 */
-  no,
 }
 
 /** 直播间状态 */
@@ -146,27 +140,27 @@ export enum LiveRoomTipTouristLoginEnum {
 
 export interface ILiveRoom {
   id?: number;
-  /** 直播间名称 */
-  name?: string;
-  /** 直播间简介 */
+  /** 标题 */
+  title?: string;
+  /** 简介 */
   desc?: string;
-  /** 是否使用cdn */
-  cdn?: SwitchEnum;
   /** 权重 */
   priority?: number;
   /** 推流秘钥 */
   key?: string;
-  /** 直播间类型 */
+  /** 类型 */
   type?: LiveRoomTypeEnum;
-  /** 开播预览图 */
+  /** 封面图 */
   cover_img?: string;
-  /** 直播间背景图 */
+  /** 关键帧图 */
+  keyframe_img?: string;
+  /** 背景图 */
   bg_img?: string;
-  /** 直播间状态 */
+  /** 状态 */
   status?: LiveRoomStatusEnum;
-  /** 直播间是否显示 */
+  /** 是否显示 */
   is_show?: SwitchEnum;
-  /** 直播间是否开启聊天 */
+  /** 是否开启聊天 */
   open_chat?: SwitchEnum;
   /** 提醒游客登录 */
   tip_tourist_login?: LiveRoomTipTouristLoginEnum;
@@ -194,22 +188,21 @@ export interface ILiveRoom {
   is_show_signin?: SwitchEnum;
   /** 是否开启手机看直播 */
   is_show_phone_live?: SwitchEnum;
-  /** 公告 */
-  announcement_msg?: string;
-  /** 通知 */
+  /** 公告通知 */
   notice_msg?: string;
   /** 系统消息 */
   system_msg?: string;
-  /** 显示直播间在线人数 */
+  /** 显示在线人数 */
   is_show_live_user_nums?: SwitchEnum;
-  /** 设置直播间最低在线人数 */
+  /** 设置最低在线人数 */
   mock_live_user_nums_min?: number;
-  /** 设置直播间最高在线人数 */
+  /** 设置最高在线人数 */
   mock_live_user_nums_max?: number;
-  /** 直播间最在线人数刷新间隔 */
+  /** 最在线人数刷新间隔 */
   mock_live_user_nums_refresh_delay?: number;
   /** 聊天消息审核 */
   msg_verify?: SwitchEnum;
+  is_fake?: SwitchEnum;
 
   pull_rtmp_url?: string;
   pull_flv_url?: string;
@@ -243,6 +236,8 @@ export interface ILiveRoom {
   /** 直播间备注 */
   remark?: string;
 
+  areaId?: number;
+
   /** 用户信息 */
   user?: IUser;
   /** 用户信息 */
@@ -254,8 +249,6 @@ export interface ILiveRoom {
   /** 直播信息 */
   live?: ILive;
   user_live_room?: IUserLiveRoom & { user: IUser };
-
-  is_fake?: SwitchEnum;
 
   created_at?: string;
   updated_at?: string;
@@ -290,49 +283,52 @@ export enum DanmuMsgTypeEnum {
   userLeaved,
   system,
   redbag,
+  reward,
 }
 
-export enum WsMessageMsgIsFileEnum {
+export enum MsgIsFileEnum {
   yes,
   no,
 }
 
-export enum WsMessageContentTypeEnum {
+export enum MsgContentTypeEnum {
   txt,
   img,
   video,
 }
 
-export enum WsMessageMsgIsShowEnum {
+export enum MsgIsShowEnum {
   yes,
   no,
 }
 
-export enum WsMessageMsgIsVerifyEnum {
+export enum MsgIsVerifyEnum {
   yes,
   no,
 }
 
-export interface IWsMessage {
+export interface IMsg {
   id?: number;
+  live_record_id?: number;
   username?: string;
   origin_username?: string;
-  content_type?: WsMessageContentTypeEnum;
+  content_type?: MsgContentTypeEnum;
   content?: string;
   origin_content?: string;
-  redbag_send_id?: number;
   live_room_id?: number;
   user_id?: number;
-  ip?: string;
+  client_ip?: string;
+  client_env?: ClientEnvEnum;
+  client_app?: ClientAppEnum;
+  client_app_version?: string;
   msg_type?: DanmuMsgTypeEnum;
   user_agent?: string;
   send_msg_time?: number;
-  is_show?: WsMessageMsgIsShowEnum;
-  is_verify?: WsMessageMsgIsVerifyEnum;
+  is_show?: SwitchEnum;
+  is_bilibili?: SwitchEnum;
   remark?: string;
 
   user?: IUser;
-  redbag_send?: IRedbagSend;
 
   created_at?: string;
   updated_at?: string;
@@ -725,13 +721,29 @@ export interface IVisitorLog {
 
 export interface IBlacklist {
   id?: number;
-  ip?: string;
+  client_ip?: string;
+  live_room_id?: number;
   user_id?: number;
-  type?: number;
+  type?: BlacklistTypeEnum;
+  start_date?: number;
+  end_date?: number;
   msg?: string;
+  remark?: string;
+
+  user?: IUser;
+
   created_at?: string;
   updated_at?: string;
   deleted_at?: string;
+}
+
+export enum BlacklistTypeEnum {
+  /** 频繁请求 */
+  frequent,
+  /** 管理员禁用 */
+  admin_disable,
+  /** 禁言 */
+  disable_msg,
 }
 export interface IMonit {
   id?: number;
@@ -766,7 +778,6 @@ export enum GoodsTypeEnum {
   sponsors = 'sponsors',
   gift = 'gift',
   recharge = 'recharge',
-  qypShop = 'qypShop',
 }
 
 export interface IGoods {
@@ -801,13 +812,16 @@ export enum LoginRecordEnum {
 
 export interface ILoginRecord {
   id?: number;
-  user_id?: number;
+  uuid?: string;
   user_agent?: string;
-  type?: LoginRecordEnum;
-  ip?: string;
+  system?: string;
+  brand?: string;
+  model?: string;
+  client_ip?: string;
+  client_env?: ClientEnvEnum;
+  client_app?: ClientAppEnum;
+  client_app_version?: string;
   remark?: string;
-
-  user?: IUser;
 
   created_at?: string;
   updated_at?: string;
@@ -815,13 +829,21 @@ export interface ILoginRecord {
 }
 
 export enum GlobalMsgTypeEnum {
-  system,
+  user = 'user',
+  system = 'system',
+  activity = 'activity',
+  notification = 'notification',
+  alwaysRedMsg = 'alwaysRedMsg',
 }
 
 export interface IGlobalMsg {
   id?: number;
   user_id?: number;
+  client_ip?: string;
   type?: GlobalMsgTypeEnum;
+  show?: SwitchEnum;
+  priority?: number;
+  title?: string;
   content?: string;
   remark?: string;
 
@@ -976,6 +998,10 @@ export interface ILiveRecord {
   start_time?: string;
   /** 直播结束时间 */
   end_time?: string;
+  client_ip?: string;
+  client_env?: ClientEnvEnum;
+  client_app?: ClientAppEnum;
+  client_app_version?: string;
   /** 备注 */
   remark?: string;
 
@@ -1097,14 +1123,22 @@ export interface ICredential {
 }
 
 export enum ClientEnvEnum {
-  android,
-  ios,
-  ipad,
-  web,
-  web_mobile,
-  web_pc,
-  windows,
-  macos,
+  android = 'android',
+  ios = 'ios',
+  ipad = 'ipad',
+  web = 'web',
+  web_mobile = 'web_mobile',
+  web_pc = 'web_pc',
+  windows = 'windows',
+  macos = 'macos',
+  linux = 'linux',
+}
+
+export enum ClientAppEnum {
+  billd_live = 'billd_live',
+  billd_live_admin = 'billd_live_admin',
+  billd_desk = 'billd_desk',
+  billd_desk_admin = 'billd_desk_admin',
 }
 
 export interface ILiveView {
@@ -1136,7 +1170,7 @@ export interface ILiveView {
 
 export interface ILiveRoomLiveUser {
   live_room_id: number;
-  live_room_name: string;
+  live_room_title: string;
   user_id: number;
   user_username: string;
   user_avatar: string;
@@ -1146,3 +1180,5 @@ export enum SwitchEnum {
   yes,
   no,
 }
+
+export type TableColumnsPlus<T> = Array<TableColumn<T> & { noOrder?: boolean }>;

@@ -3,6 +3,7 @@ import { nameSpaceWrap } from '@/locales/util';
 export default nameSpaceWrap('router', {
   dashboard: 'dashboard',
   login: 'login',
+  setting: 'setting',
   settingAccount: 'settingAccount',
   401: '401 Page',
   404: '404 Page',
@@ -20,9 +21,9 @@ export default nameSpaceWrap('router', {
   liveRoomList: 'liveRoomList',
   liveRoomUpdate: 'liveRoomUpdate',
 
-  wsMessageManage: 'wsMessageManage',
-  wsMessageList: 'wsMessageList',
-  wsMessageUpdate: 'wsMessageUpdate',
+  msgManage: 'msgManage',
+  msgList: 'msgList',
+  msgUpdate: 'msgUpdate',
 
   user: 'user',
   userList: 'userList',

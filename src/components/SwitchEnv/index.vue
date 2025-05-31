@@ -32,7 +32,10 @@
         </n-space>
       </n-radio-group>
     </HModal>
-    <div class="switch-env">
+    <div
+      v-if="isDev"
+      class="switch-env"
+    >
       <n-button
         type="info"
         size="tiny"
