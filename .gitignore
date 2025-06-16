@@ -1,8 +1,4 @@
+deploy
 node_modules
-dist
-components.d.ts
-auto-imports.d.ts
-.DS_Store
-.eslintcache
-deploy/index.js
-deploy/index.cjs
+package.json
+pnpm-lock.yaml
